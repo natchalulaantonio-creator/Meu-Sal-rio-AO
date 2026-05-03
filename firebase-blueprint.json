@@ -1,38 +1,41 @@
 {
   "entities": {
-    "UserProfile": {
+    "User": {
       "title": "User Profile",
-      "description": "Information about a registered user",
+      "description": "User profile with role management",
       "type": "object",
       "properties": {
         "name": { "type": "string" },
         "surname": { "type": "string" },
-        "email": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
         "role": { "type": "string", "enum": ["super_admin", "admin", "moderator", "customer"] },
         "createdAt": { "type": "string", "format": "date-time" },
         "lastActive": { "type": "string", "format": "date-time" }
       },
-      "required": ["name", "email", "role"]
+      "required": ["email"]
     },
     "Calculation": {
-      "title": "Salary Calculation",
-      "description": "A saved salary or settlement simulation",
+      "title": "Calculation Simulation",
+      "description": "Saved salary or settlement simulation",
       "type": "object",
       "properties": {
         "userId": { "type": "string" },
-        "type": { "type": "string", "enum": ["salario", "fecho"] },
-        "net": { "type": "number" },
         "grossSalary": { "type": "number" },
-        "irt": { "type": "number" },
         "inss": { "type": "number" },
+        "irt": { "type": "number" },
+        "net": { "type": "number" },
+        "indemnity": { "type": "number" },
+        "vacation": { "type": "number" },
+        "thirteenth": { "type": "number" },
         "total": { "type": "number" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "createdAt": { "type": "string", "format": "date-time" },
+        "type": { "type": "string", "enum": ["salario", "fecho", "indeminizacao"] }
       },
-      "required": ["userId", "type", "createdAt"]
+      "required": ["userId", "createdAt", "type"]
     },
     "GlobalStats": {
       "title": "Global Statistics",
-      "description": "System-wide counters",
+      "description": "Aggregated stats for the admin dashboard",
       "type": "object",
       "properties": {
         "totalUsers": { "type": "number" },
@@ -43,16 +46,16 @@
   },
   "firestore": {
     "/users/{userId}": {
-      "schema": "UserProfile",
-      "description": "User profiles and roles"
+      "schema": "User",
+      "description": "Individual user profiles"
     },
     "/calculations/{calcId}": {
       "schema": "Calculation",
-      "description": "User saved simulations"
+      "description": "Saved calculations for users"
     },
-    "/stats/{statId}": {
+    "/stats/global": {
       "schema": "GlobalStats",
-      "description": "Global system statistics"
+      "description": "Global statistics"
     }
   }
 }

@@ -1,10 +1,10 @@
 {
-  "projectId": "remixed-project-id",
-  "appId": "remixed-app-id",
-  "apiKey": "remixed-api-key",
-  "authDomain": "remixed-auth-domain",
-  "firestoreDatabaseId": "remixed-firestore-database-id",
-  "storageBucket": "remixed-storage-bucket",
-  "messagingSenderId": "remixed-messaging-sender-id",
-  "measurementId": "remixed-measurement-id"
+  "projectId": "mwangole-b75dd",
+  "appId": "1:1054060161662:web:247d44c48049b33970862f",
+  "apiKey": "AIzaSyChCgEHZssSeaO3-bUam7SRJXSVJzqTVCA",
+  "authDomain": "mwangole-b75dd.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-403f7d56-3964-480f-96db-ddfd11e899f3",
+  "storageBucket": "mwangole-b75dd.firebasestorage.app",
+  "messagingSenderId": "1054060161662",
+  "measurementId": ""
 }
