@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Information about a registered user",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "surname": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["super_admin", "admin", "moderator", "customer"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastActive": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "role"]
+    },
+    "Calculation": {
+      "title": "Salary Calculation",
+      "description": "A saved salary or settlement simulation",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["salario", "fecho"] },
+        "net": { "type": "number" },
+        "grossSalary": { "type": "number" },
+        "irt": { "type": "number" },
+        "inss": { "type": "number" },
+        "total": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "createdAt"]
+    },
+    "GlobalStats": {
+      "title": "Global Statistics",
+      "description": "System-wide counters",
+      "type": "object",
+      "properties": {
+        "totalUsers": { "type": "number" },
+        "totalSimulations": { "type": "number" },
+        "lastUpdate": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and roles"
+    },
+    "/calculations/{calcId}": {
+      "schema": "Calculation",
+      "description": "User saved simulations"
+    },
+    "/stats/{statId}": {
+      "schema": "GlobalStats",
+      "description": "Global system statistics"
+    }
+  }
+}
